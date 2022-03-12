@@ -35,7 +35,6 @@ for row in range(0, width+1, 2):
         plt.imshow(the_map, cmap="Greys")
         plt.pause(0.05)
 
-print(the_map)
-
+plt.ioff()
 plt.imshow(the_map, cmap="Greys")
 plt.show()
