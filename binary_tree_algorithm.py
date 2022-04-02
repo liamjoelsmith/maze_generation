@@ -14,10 +14,10 @@ for f in files:
     os.remove(f)
 
 # maze dimensions
-LENGTH = 21
+LENGTH = 11
 WIDTH = 11
 
-PAUSE_LENGTH = 0.000000000000001  # seconds
+PAUSE_LENGTH = 0.0001  # seconds
 
 # create empty maze
 the_map = np.zeros(LENGTH * WIDTH).reshape(LENGTH, WIDTH)
@@ -32,7 +32,7 @@ frame.axes.get_yaxis().set_ticks([])
 i = 0  # frame number, used to keep order of images when generating gif
 for row in range(0, LENGTH, 2):
     for col in range(0, WIDTH, 2):
-        the_map[row][col] += COLOUR
+        the_map[row][col] = COLOUR
         plt.imshow(the_map, cmap="Greys")
         plt.pause(PAUSE_LENGTH)
 
@@ -46,15 +46,15 @@ for row in range(0, LENGTH, 2):
         if the_map[row-2][col] > 0 and the_map[row][col-2] > 0:
             choice = np.random.choice(2)
             if choice:
-                the_map[row - 1][col] += COLOUR
+                the_map[row - 1][col] = COLOUR
             else:
-                the_map[row][col - 1] += COLOUR
+                the_map[row][col - 1] = COLOUR
         # if only neighbour is above, connect with this
         elif the_map[row - 2][col] > 0:
-            the_map[row - 1][col] += COLOUR
+            the_map[row - 1][col] = COLOUR
         # if only neighbour is to the left, connect with this
         elif the_map[row][col - 2] > 0:
-            the_map[row][col - 1] += COLOUR
+            the_map[row][col - 1] = COLOUR
 
         plt.imshow(the_map, cmap="Greys")
         plt.pause(PAUSE_LENGTH)
